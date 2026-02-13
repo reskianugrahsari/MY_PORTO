@@ -1,0 +1,406 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --primary: 0 84% 60%;
+    /* Red */
+    --secondary: 345 83% 41%;
+    /* Crimson/Rose */
+    --darker: 0 10% 4%;
+    /* Near Black with slight red tint */
+    --card: 0 8% 8%;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#0a0101] text-slate-200 antialiased selection:bg-red-500/30;
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply tracking-tight text-white font-bold;
+  }
+}
+
+/* Scroll Reveal Base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Page Progress Bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 3px;
+  background: linear-gradient(to right, #ef4444, #be123c, #991b1b);
+  z-index: 100;
+  transition: width 0.1s ease;
+}
+
+@layer components {
+  .glass {
+    @apply bg-white/5 backdrop-blur-lg border border-white/10 shadow-xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl transition-all duration-300 hover:bg-white/10 hover:border-white/20 hover:translate-y-[-4px];
+  }
+
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-red-400 via-rose-500 to-red-600;
+  }
+
+  .btn-premium {
+    @apply relative px-8 py-4 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(239, 68, 68, 0.5)] active:scale-95;
+    background: linear-gradient(135deg, #ef4444 0%, #be123c 100%);
+  }
+
+  .btn-premium::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 100%);
+  }
+
+  .btn-premium:hover::before {
+    @apply opacity-100;
+  }
+}
+
+/* Animations */
+@keyframes mesh-bg {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.mesh-gradient {
+  background: radial-gradient(at 0% 0%, rgba(239, 68, 68, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 0%, rgba(190, 18, 60, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(153, 27, 27, 0.15) 0px, transparent 50%),
+    radial-gradient(at 0% 100%, rgba(244, 63, 94, 0.15) 0px, transparent 50%);
+  background-size: 200% 200%;
+  animation: mesh-bg 15s ease infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+
+  33% {
+    transform: translateY(-15px) rotate(2deg);
+  }
+
+  66% {
+    transform: translateY(-7px) rotate(-2deg);
+  }
+}
+
+@keyframes rotating-border {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-rotating-border {
+  animation: rotating-border 8s linear infinite;
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes reveal-left {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes reveal-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 12s linear infinite;
+}
+
+.animate-spin-slow-rev {
+  animation: spin-slow 18s linear reverse infinite;
+}
+
+.animate-reveal-left {
+  animation: reveal-left 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-reveal-up {
+  animation: reveal-up 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animation-delay-200 {
+  animation-delay: 200ms;
+}
+
+.animation-delay-500 {
+  animation-delay: 500ms;
+}
+
+.animation-delay-1000 {
+  animation-delay: 1000ms;
+}
+
+/* Typing Effect */
+@keyframes typing {
+  from {
+    width: 0
+  }
+
+  to {
+    width: 100%
+  }
+}
+
+@keyframes blink {
+
+  from,
+  to {
+    border-color: transparent
+  }
+
+  50% {
+    border-color: #ef4444
+  }
+}
+
+.animate-typing {
+  display: inline-block;
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid #ef4444;
+  animation: typing 2.5s steps(30, end), blink .75s step-end infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0101;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(#1e293b, #334155);
+  border-radius: 5px;
+  border: 2px solid #0a0101;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #475569;
+}
+
+/* Grain Texture Overlay */
+.grain-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Scanning Beam Animation */
+@keyframes beam-scan {
+  0% {
+    transform: translateY(-100%) skewY(-20deg);
+    opacity: 0;
+  }
+
+  20% {
+    opacity: 0.5;
+  }
+
+  80% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(200%) skewY(-20deg);
+    opacity: 0;
+  }
+}
+
+.scanning-beam {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, rgba(239, 68, 68, 0.1), transparent);
+  pointer-events: none;
+  animation: beam-scan 8s linear infinite;
+  z-index: 1;
+}
+
+/* Magnetic Hover Utility */
+.magnetic {
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.magnetic:hover {
+  transform: scale(1.05) translateZ(10px);
+}
+
+/* Text Shimmer Effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% center;
+  }
+
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.text-shimmer {
+  background: linear-gradient(to right,
+      #94a3b8 20%,
+      #ffffff 40%,
+      #ffffff 60%,
+      #94a3b8 80%);
+  background-size: 200% auto;
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+  animation: shimmer 5s linear infinite;
+}
+
+/* Glowing Border for Cards */
+.glow-border {
+  position: relative;
+}
+
+.glow-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(45deg, transparent, rgba(239, 68, 68, 0.3), transparent);
+  border-radius: inherit;
+  z-index: -1;
+  transition: opacity 0.3s;
+  opacity: 0;
+}
+
+.glow-border:hover::after {
+  opacity: 1;
+}
+
+/* Continuous Marquee */
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.marquee-content {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+
+/* Edge Fade for Marquee */
+.mask-fade-out {
+  mask-image: linear-gradient(to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent);
+  -webkit-mask-image: linear-gradient(to right,
+      transparent,
+      black 15%,
+      black 85%,
+      transparent);
+}
+
+/* Smooth Fade In for Page Load */
+@keyframes page-load {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.animate-page-load {
+  animation: page-load 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
