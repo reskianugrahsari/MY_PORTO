@@ -95,9 +95,14 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Floating Interaction Badges */}
-            <div className="absolute -top-4 -right-8 glass-card py-2 px-4 animate-float flex items-center gap-2 border-red-500/30">
-              <div className="w-2 h-2 bg-red-500 rounded-full animate-ping"></div>
-              <span className="text-[10px] font-black tracking-widest uppercase text-white">Live Status</span>
+            <div className="absolute -top-8 -right-8 bg-[#0a0101] border-2 border-red-600/30 rounded-2xl py-3 px-6 shadow-[0_20px_50px_rgba(239,68,68,0.15)] animate-float flex items-center gap-4 group/badge">
+              <div className="flex flex-col items-end">
+                <span className="text-[11px] font-black text-white tracking-[0.2em] uppercase">Verified Specialist</span>
+                <span className="text-[8px] text-red-500 font-bold tracking-[0.3em] uppercase opacity-80 group-hover:opacity-100 transition-opacity">Web & Networks</span>
+              </div>
+              <div className="w-11 h-11 bg-gradient-to-tr from-red-600 to-rose-500 rounded-xl flex items-center justify-center shadow-xl shadow-red-600/40 group-hover:rotate-12 transition-transform duration-500">
+                <MousePointer2 className="w-5 h-5 text-white fill-white/20" />
+              </div>
             </div>
 
             <div className="absolute top-1/2 -left-12 -translate-y-1/2 glass-card py-3 px-3 animate-float animation-delay-1000 border-red-500/20">
