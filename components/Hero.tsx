@@ -38,7 +38,6 @@ const Hero: React.FC = () => {
               target="_blank"
               rel="noreferrer"
               className="px-8 py-4 glass hover:bg-white/10 text-white font-bold rounded-xl transition-all flex items-center gap-3 border border-white/10 active:scale-95 magnetic"
-              download
             >
               <Download className="w-5 h-5" />
               Resume
