@@ -11,20 +11,13 @@ Your portfolio has been updated with the following improvements:
 - Updated `index.html` to use CSS imports instead of CDN
 - This eliminates the production warning
 
-### 2. **Gemini API Key Setup** ⚙️
-You need to get a Gemini API key to enable the chatbot feature:
-
-1. Go to [Google AI Studio](https://aistudio.google.com/apikey)
-2. Click "Get API Key" 
-3. Copy your API key
-4. Open `.env.local` in the root directory (created for you)
-5. Replace `your_gemini_api_key_here` with your actual key:
+1. Install dependencies and run the development server as usual:
+   ```bash
+   npm install
+   npm run dev
    ```
-   VITE_GEMINI_API_KEY=your_actual_api_key_here
-   ```
-6. Save the file
 
-**Important:** Never commit `.env.local` to git - it's already in `.gitignore` by default.
+*Chatbot functionality has been removed from this project.*
 
 ### 3. **React DevTools** (Optional)
 - Install [React DevTools browser extension](https://react.dev/link/react-devtools) for better debugging in development
@@ -50,16 +43,10 @@ The app will be available at `http://localhost:3000`
 ## What Changed
 
 - ✅ Tailwind CSS now uses proper build process
-- ✅ Gemini API key errors are now gracefully handled
 - ✅ Environment variables properly configured
 - ✅ Ready for production deployment
 
 ## Troubleshooting
-
-**Still seeing API Key error?**
-- Make sure `VITE_GEMINI_API_KEY` is in `.env.local`
-- Restart dev server after updating `.env.local`
-- Check the value doesn't have extra spaces
 
 **Tailwind styles not showing?**
 - Make sure `npm install` completed successfully
