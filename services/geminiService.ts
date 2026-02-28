@@ -1,6 +1,7 @@
 import { GoogleGenAI, Chat } from "@google/genai";
 
 let chatSession: Chat | null = null;
+let ai: GoogleGenAI | null = null;
 
 // Get API key from environment
 const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
@@ -8,11 +9,18 @@ const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
 // Log API key status (without revealing the actual key)
 console.log('API Key status:', apiKey ? `Present (${apiKey.substring(0, 10)}...)` : 'Missing');
 
-// Initialize the Gemini Client
-const ai = new GoogleGenAI({ apiKey });
+// Initialize the Gemini Client only if API key is present
+if (apiKey) {
+  ai = new GoogleGenAI({ apiKey });
+} else {
+  console.warn('WARNING: Gemini API key is not set. To enable the chatbot, set VITE_GEMINI_API_KEY in .env.local');
+}
 
 export const initializeChat = async (): Promise<void> => {
   try {
+    if (!ai) {
+      throw new Error('Gemini API key is not configured. Please set VITE_GEMINI_API_KEY in .env.local');
+    }
     console.log('Initializing chat session...');
     chatSession = ai.chats.create({
       model: 'gemini-3-flash-preview',
@@ -56,6 +64,10 @@ export const initializeChat = async (): Promise<void> => {
 };
 
 export const sendMessageToGemini = async (message: string): Promise<string> => {
+  if (!ai) {
+    return "⚙️ The chatbot is not configured. Please set up your Gemini API key in .env.local to enable this feature.";
+  }
+  
   let retries = 0;
   const MAX_RETRIES = 3;
 

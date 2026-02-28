@@ -5,17 +5,12 @@ import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Certifications from './components/Certifications';
 import Training from './components/Training';
-import ChatBot from './components/ChatBot';
 import Footer from './components/Footer';
-import { initializeChat } from './services/geminiService';
 
 const App: React.FC = () => {
 
-  // Pre-initialize Gemini chat on mount to reduce latency on first user interaction
+  // Intersection Observer for Reveal Animations
   useEffect(() => {
-    initializeChat();
-
-    // Intersection Observer for Reveal Animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: '0px 0px -50px 0px'
@@ -78,7 +73,6 @@ const App: React.FC = () => {
         </section>
       </main>
       <Footer />
-      <ChatBot />
     </div>
   );
 };

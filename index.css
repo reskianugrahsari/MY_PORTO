@@ -69,8 +69,12 @@
   }
 
   .btn-premium {
-    @apply relative px-8 py-4 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 hover:shadow-[0_0_20px_rgba(239, 68, 68, 0.5)] active:scale-95;
+    @apply relative px-8 py-4 bg-primary text-white font-bold rounded-xl overflow-hidden transition-all duration-300 active:scale-95;
     background: linear-gradient(135deg, #ef4444 0%, #be123c 100%);
+  }
+
+  .btn-premium:hover {
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
   }
 
   .btn-premium::before {
