@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
                 </li>
               ))}
               <li>
-                <a href="/CV.png" target="_blank" rel="noreferrer" className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2 group">
+                <a href="/resume.pdf" target="_blank" rel="noreferrer" download className="text-slate-400 hover:text-red-500 transition-colors flex items-center gap-2 group">
                   Resume
                   <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-all translate-y-1 group-hover:translate-y-0" />
                 </a>
